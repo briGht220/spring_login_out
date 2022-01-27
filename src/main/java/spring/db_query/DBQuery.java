@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class dbquery {
+public class DBQuery {
     private DataSource dataSource;
 
-    public dbquery(DataSource dataSource) {
+    public DBQuery() {}
+
+    public DBQuery(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -21,7 +23,8 @@ public class dbquery {
             resultSet.next();
             return resultSet.getInt(1);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
+            return -1;
         }
     }
 }
