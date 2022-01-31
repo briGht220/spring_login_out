@@ -1,17 +1,47 @@
 package spring.object;
 
-import java.util.Collection;
+import javax.sql.DataSource;
+import java.sql.*;
 
 public class MemberDAO {
-    public MemberDTO selectByEmail(String email) {
-        return null;
+    private Connection connection;
+    private MemberDTO member;
+
+    public MemberDAO(DataSource dataSource) throws SQLException {
+        this.connection = dataSource.getConnection();
     }
 
-    public void insert(MemberDTO memberDTO) {}
+    public MemberDAO(DataSource dataSource, MemberDTO member) throws SQLException {
+        this.connection = dataSource.getConnection();
+        this.member = member;
+    }
 
-    public void update(MemberDTO memberDTO) {}
+    public int count_member() throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("select count(*) from member");
 
-    public Collection<MemberDTO> selectAll() {
-        return null;
+        resultSet.next();
+
+        int count = resultSet.getInt(1);
+
+        statement.close();
+        resultSet.close();
+        connection.close();
+
+        return count;
+    }
+
+    public String insert_member() throws SQLException {
+        String insertQuery = "insert into member values(?, ?, ?);";
+        PreparedStatement statement = connection.prepareStatement(insertQuery);
+
+        statement.setString(1, member.getEmail());
+        statement.setString(2, member.getPassword());
+        statement.setString(3, member.getName());
+
+        statement.close();
+        connection.close();
+
+        return "Insert Success";
     }
 }
