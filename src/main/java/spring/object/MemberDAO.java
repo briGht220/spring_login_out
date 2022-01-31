@@ -32,12 +32,13 @@ public class MemberDAO {
     }
 
     public String insert_member() throws SQLException {
-        String insertQuery = "insert into member values(?, ?, ?);";
+        String insertQuery = "insert into member values(null, ?, ?, ?);";
         PreparedStatement statement = connection.prepareStatement(insertQuery);
 
         statement.setString(1, member.getEmail());
         statement.setString(2, member.getPassword());
         statement.setString(3, member.getName());
+        statement.executeUpdate();
 
         statement.close();
         connection.close();
