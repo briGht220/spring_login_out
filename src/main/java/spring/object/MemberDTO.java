@@ -8,6 +8,23 @@ public class MemberDTO {
     private String password;
     private String name;
 
+    public MemberDTO() {}
+
+    public MemberDTO(String email) {
+        this.email = email;
+    }
+
+    public MemberDTO(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public MemberDTO(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

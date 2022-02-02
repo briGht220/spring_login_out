@@ -3,6 +3,8 @@ package spring.config;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import spring.object.MemberDAO;
+import spring.object.MemberDTO;
 
 @Configuration
 public class AppContext {
@@ -18,5 +20,13 @@ public class AppContext {
         dataSource.setMaxActive(10);
 
         return dataSource;
+    }
+
+    public MemberDAO memberDAO() {
+        return memberDAO();
+    }
+
+    public MemberDTO memberDTO() {
+        return memberDTO();
     }
 }

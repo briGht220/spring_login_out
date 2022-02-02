@@ -45,4 +45,14 @@ public class MemberDAO {
 
         return "Insert Success";
     }
+
+
+    public void setConnection(DataSource dataSource) throws SQLException {
+        this.connection = dataSource.getConnection();
+    }
+
+    public void setMember(MemberDTO member) {
+        this.member = member;
+
+    }
 }
