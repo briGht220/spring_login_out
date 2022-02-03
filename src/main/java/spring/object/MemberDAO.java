@@ -1,20 +1,13 @@
 package spring.object;
 
-import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.tomcat.jdbc.pool.DataSource;
+
 import java.sql.*;
 
 public class MemberDAO {
     private Connection connection;
-    private MemberDTO member;
-
-    public MemberDAO(DataSource dataSource) throws SQLException {
-        this.connection = dataSource.getConnection();
-    }
-
-    public MemberDAO(DataSource dataSource, MemberDTO member) throws SQLException {
-        this.connection = dataSource.getConnection();
-        this.member = member;
-    }
+    private MemberDTO member = null;
 
     public int count_member() throws SQLException {
         Statement statement = connection.createStatement();

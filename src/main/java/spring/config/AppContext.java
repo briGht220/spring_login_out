@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import spring.object.MemberDAO;
 import spring.object.MemberDTO;
 
+import java.sql.SQLException;
+
 @Configuration
 public class AppContext {
     @Bean(destroyMethod = "close")
@@ -22,11 +24,13 @@ public class AppContext {
         return dataSource;
     }
 
-    public MemberDAO memberDAO() {
-        return memberDAO();
+    @Bean
+    public MemberDAO memberDAO() throws SQLException {
+        return new MemberDAO();
     }
 
+    @Bean
     public MemberDTO memberDTO() {
-        return memberDTO();
+        return new MemberDTO();
     }
 }
